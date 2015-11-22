@@ -1,7 +1,7 @@
 # TrueRandom
 A direct copy from https://code.google.com/p/tinkerit/ of the TrueRandom project.
 This is done to preserve and allow editing following the archiving of all Google Code projects in August 2015.
-##All credit to the original contributors.
+###All credit to the original contributors.
 
 #Introduction
 TrueRandom generates true random numbers on Arduino. They are different every time you start your program, and are truly unpredictable unlike the default Arduino random() function.
