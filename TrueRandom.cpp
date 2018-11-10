@@ -95,6 +95,7 @@ int TrueRandomClass::randomBit(void) {
 char TrueRandomClass::randomByte(void) {
   char result;
   uint8_t i;
+  result = 0;
   for (i=8; i--;) result += result + randomBit();
   return result;
 }
@@ -102,6 +103,7 @@ char TrueRandomClass::randomByte(void) {
 int TrueRandomClass::rand() {
   int result;
   uint8_t i;
+  result = 0;
   for (i=15; i--;) result += result + randomBit();
   return result;
 }
@@ -109,6 +111,7 @@ int TrueRandomClass::rand() {
 long TrueRandomClass::random() {
   long result;
   uint8_t i;
+  result = 0;
   for (i=31; i--;) result += result + randomBit();
   return result;
 }
