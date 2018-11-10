@@ -6,6 +6,13 @@ This is done to preserve and allow editing following the archiving of all Google
 ## Introduction
 TrueRandom generates true random numbers on Arduino. They are different every time you start your program, and are truly unpredictable unlike the default Arduino random() function.
 
+## Warning
+It appears TrueRandom may not have a truely random distribution according to an analysis found on [endolith](http://www.endolith.com/wordpress/2013/06/19/truerandom-is-not-truly-random/):
+
+> After testing it, I realized it’s not actually random and shouldn’t be used for anything important. ... Clearly these are not randomly distributed. They’re strongly centered around 0 and low powers of 2.
+
+> ... So for Arduino, I used the frequency difference between the watchdog timer and Timer 1 as the entropy source ... It uses the watchdog timer to sample (and reset) Timer 1. Since the watchdog timer runs on its own RC oscillator, and Timer 1 is on the crystal oscillator, there is random variation in the value read. Then the randomness is spread around to all 8 bits by the same method. The watchdog timer’s minimum length is not short, so this method only produces about 64 bit/s, vs TrueRandom’s 3200 bit/s. But they’re good bits. Since TrueRandom doesn’t live up to its name, and I’m not a cryptographic expert, I erred on the side of caution and named it [ProbablyRandom](https://gist.github.com/endolith/2568571).
+
 ## Compatibility
 TrueRandom currently functions on the Arduino Diecimila, Duemilanove, 168 and 328 based Arduinos. It does not yet function on the Arduino Mega. TrueRandom uses Analog 0. Do not connect anything to this pin. These restrictions may be removed in future versions of this library.
 
