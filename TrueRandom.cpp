@@ -12,17 +12,17 @@ int TrueRandomClass::randomBitRaw(void) {
   uint16_t i;
   uint8_t bit;
   volatile uint8_t dummy;
-  
+
   // Store all the registers we'll be playing with
   copyAdmux = ADMUX;
   copyAdcsra = ADCSRA;
   copyAdcsrb = ADCSRB;
   copyPortc = PORTC;
   copyDdrc = DDRC;
-  
+
   // Perform a conversion on Analog0, using the Vcc reference
   ADMUX = _BV(REFS0);
-  
+
 #if F_CPU > 16000000
   // ADC is enabled, divide by 32 prescaler
   ADCSRA = _BV(ADEN) | _BV(ADPS2) | _BV(ADPS0);
@@ -118,10 +118,9 @@ long TrueRandomClass::random() {
 
 long TrueRandomClass::random(long howBig) {
   long randomValue;
-  long maxRandomValue;
   long topBit;
   long bitPosition;
-  
+
   if (!howBig) return 0;
   randomValue = 0;
   if (howBig & (howBig-1)) {
@@ -139,7 +138,7 @@ long TrueRandomClass::random(long howBig) {
       // Generate the next bit of the result
       if (randomBit()) randomValue |= bitPosition;
 
-      // Check if bit 
+      // Check if bit
       if (randomValue >= howBig) {
         // Number is over the top limit - start again.
         randomValue = 0;
@@ -179,7 +178,7 @@ void TrueRandomClass::uuid(uint8_t* uuidLocation) {
   memfill((char*)uuidLocation,16);
   // Although the UUID contains 128 bits, only 122 of those are random.
   // The other 6 bits are fixed, to indicate a version number.
-  uuidLocation[6] = 0x40 | (0x0F & uuidLocation[6]); 
+  uuidLocation[6] = 0x40 | (0x0F & uuidLocation[6]);
   uuidLocation[8] = 0x80 | (0x3F & uuidLocation[8]);
 }
 
